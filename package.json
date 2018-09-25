@@ -1,0 +1,23 @@
+{
+  "name": "swagger-ui-http",
+  "version": "1.0.0",
+  "description": "Swagger UI minimalist.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ralego75/swagger-ui-http.git"
+  },
+  "author": "Rafael León Gómez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ralego75/swagger-ui-http/issues"
+  },
+  "homepage": "https://github.com/ralego75/swagger-ui-http#readme",
+  "dependencies": {
+    "routes": "^2.1.0",
+    "swagger-jsdoc": "^3.2.3"
+  }
+}
