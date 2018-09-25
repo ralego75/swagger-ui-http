@@ -60,3 +60,5 @@ router.addRoute(urlFileNameJs, (req, res, params) => httpController.readFile(res
 router.addRoute(urlFileNameCss, (req, res, params) => httpController.readFile(res, params.file_name + cssExtension, env.getHTTP().OPTIONS.HEADERS.CSS))
 
 httpController.createServer(router)
+
+exports.getRouter = () => { return router }
