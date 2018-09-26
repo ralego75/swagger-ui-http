@@ -1,15 +1,5 @@
 const env = require('./environmnets/environment')
-
 const httpController = require('./controllers/http-controller')
-
-// set server port.
-httpController.setPort(5503)
-
-// router
-const router = httpController.getRouter()
-
-// initialize swagger-jsdoc
-const swaggerSpec = httpController.getSwaggerSpec()
 
 const indexHtmlFile = 'index.html'
 const jsExtension = '.js'
@@ -18,47 +8,61 @@ const urlSwaggerJson = '/swagger.json'
 const urlFileNameJs = '/:file_name' + jsExtension
 const urlFileNameCss = '/:file_name' + cssExtension
 
+var router, swaggerSpec
 
-/**
- * @swagger
- * /actuator/info:
- *   get:
- *     tags:
- *       - ACTUATOR
- *     description: Retrieve the information of the application.
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: Data information relative to the application.
- */
 
-router.addRoute(httpController.getUrlActuatorInfo(), (req, res, params) => httpController.sendJSONResponse(res, env.getInfo()))
+exports.getRouter = (port, apis) => {
+    // set server port.
+    httpController.setPort(port)
+    httpController.setSwaggerApis(apis)
 
-/**
- * @swagger
- * /actuator/helth:
- *   get:
- *     tags:
- *       - ACTUATOR
- *     description: Gives an UP value if the application is running properly.
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: "{ \"status\": \"UP\" }"
- */
+    // router
+    router = httpController.getRouter()
 
-router.addRoute(httpController.getUrlActuatorHelth(), (req, res, params) => httpController.sendJSONResponse(res, env.getHelth()))
+    // initialize swagger-jsdoc
+    swaggerSpec = httpController.getSwaggerSpec()
 
-router.addRoute(urlSwaggerJson, (req, res, params) => httpController.sendResponse(res, env.getHTTP().STATUS.CODE.OK, JSON.stringify(swaggerSpec, null, ' '), env.getHTTP().OPTIONS.HEADERS.JSON))
+    /**
+     * @swagger
+     * /actuator/info:
+     *   get:
+     *     tags:
+     *       - ACTUATOR
+     *     description: Retrieve the information of the application.
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Data information relative to the application.
+     */
 
-router.addRoute(httpController.getUrlApiDocs(), (req, res, params) => httpController.readFile(res, indexHtmlFile, env.getHTTP().OPTIONS.HEADERS.HTML))
+    router.addRoute(httpController.getUrlActuatorInfo(), (req, res, params) => httpController.sendJSONResponse(res, env.getInfo()))
 
-router.addRoute(urlFileNameJs, (req, res, params) => httpController.readFile(res, params.file_name + jsExtension, env.getHTTP().OPTIONS.HEADERS.JSON))
+    /**
+     * @swagger
+     * /actuator/helth:
+     *   get:
+     *     tags:
+     *       - ACTUATOR
+     *     description: Gives an UP value if the application is running properly.
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: "{ \"status\": \"UP\" }"
+     */
 
-router.addRoute(urlFileNameCss, (req, res, params) => httpController.readFile(res, params.file_name + cssExtension, env.getHTTP().OPTIONS.HEADERS.CSS))
+    router.addRoute(httpController.getUrlActuatorHelth(), (req, res, params) => httpController.sendJSONResponse(res, env.getHelth()))
 
-httpController.createServer(router)
+    router.addRoute(urlSwaggerJson, (req, res, params) => httpController.sendResponse(res, env.getHTTP().STATUS.CODE.OK, JSON.stringify(swaggerSpec, null, ' '), env.getHTTP().OPTIONS.HEADERS.JSON))
 
-exports.getRouter = () => { return router }
+    router.addRoute(httpController.getUrlApiDocs(), (req, res, params) => httpController.readFile(res, indexHtmlFile, env.getHTTP().OPTIONS.HEADERS.HTML))
+
+    router.addRoute(urlFileNameJs, (req, res, params) => httpController.readFile(res, params.file_name + jsExtension, env.getHTTP().OPTIONS.HEADERS.JSON))
+
+    router.addRoute(urlFileNameCss, (req, res, params) => httpController.readFile(res, params.file_name + cssExtension, env.getHTTP().OPTIONS.HEADERS.CSS))
+
+    httpController.createServer(router)
+
+    return router
+}

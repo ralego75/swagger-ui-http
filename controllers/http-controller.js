@@ -99,7 +99,7 @@ const swaggerOptions = {
   // import swaggerDefinitions
   swaggerDefinition: swaggerDefinition,
   // path to the API docs
-  apis: ['./index.js'],
+  apis: [],
 }
 
 const getError = (error) => {
@@ -141,6 +141,8 @@ exports.getSwaggerSpec = () => {
 
 exports.getPort = () => { return port }
 exports.setPort = (serverPort) => { port = serverPort }
+
+exports.setSwaggerApis = (apis) => { swaggerOptions.apis = apis }
 
 exports.getUrlApiDocs = () => { return urlApiDocs }
 exports.getUrlActuatorInfo = () => { return urlActuatorInfo }
