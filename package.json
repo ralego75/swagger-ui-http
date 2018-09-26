@@ -1,6 +1,6 @@
 {
   "name": "swagger-ui-http",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Swagger UI minimalist.",
   "main": "index.js",
   "scripts": {
