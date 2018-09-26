@@ -57,6 +57,7 @@ const HTTP = {
 
 exports.getHTTP = () => { return HTTP }
 
+exports.setInfo = (info) => { BODY = info }
 exports.getInfo = () => { return { status: HTTP.STATUS.CODE.OK, body: BODY } }
 
 exports.getHelth = () => { return { status: HTTP.STATUS.CODE.OK, body: { "status": "UP" } } }

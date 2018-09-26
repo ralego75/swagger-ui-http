@@ -11,16 +11,22 @@ const urlFileNameCss = '/:file_name' + cssExtension
 var router, swaggerSpec
 
 
-exports.getRouter = (port, apis) => {
+exports.getRouter = (port, apis, info) => {
+    // set info.
+    env.setInfo(info)
+
     // set server port.
     httpController.setPort(port)
+
+    // set swagger apis.
     httpController.setSwaggerApis(apis)
 
-    // router
+    // get router.
     router = httpController.getRouter()
 
     // initialize swagger-jsdoc
     swaggerSpec = httpController.getSwaggerSpec()
+    
 
     /**
      * @swagger
@@ -66,3 +72,7 @@ exports.getRouter = (port, apis) => {
 
     return router
 }
+
+exports.sendJSONResponse = (res, data) => httpController.sendJSONResponse(res, data)
+
+exports.sendResponse = (res, status, data, options) => httpController.sendResponse(res, status, data, options)

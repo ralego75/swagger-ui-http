@@ -99,7 +99,7 @@ const swaggerOptions = {
   // import swaggerDefinitions
   swaggerDefinition: swaggerDefinition,
   // path to the API docs
-  apis: [],
+  apis: ['./node_modules/swagger-ui-http/index.js'],
 }
 
 const getError = (error) => {
@@ -142,7 +142,7 @@ exports.getSwaggerSpec = () => {
 exports.getPort = () => { return port }
 exports.setPort = (serverPort) => { port = serverPort }
 
-exports.setSwaggerApis = (apis) => { swaggerOptions.apis = apis }
+exports.setSwaggerApis = (apis) => swaggerOptions.apis = swaggerOptions.apis.concat(apis)
 
 exports.getUrlApiDocs = () => { return urlApiDocs }
 exports.getUrlActuatorInfo = () => { return urlActuatorInfo }
