@@ -6,6 +6,7 @@ const swaggerJSDoc = require('swagger-jsdoc')
 const env = require("./../environmnets/environment")
 
 var port = undefined
+var host = undefined
 
 const urlApiDocs = "/api-docs"
 const urlActuatorInfo = "/actuator/info"
@@ -90,7 +91,7 @@ const swaggerDefinition = {
     version: '1.0.0',
     description: 'Demonstrating how to describe STORES API with Swagger',
   },
-  host: hostname + ':' + port,
+  host: host + ':' + port,
   basePath: '/'
 }
 
@@ -141,6 +142,9 @@ exports.getSwaggerSpec = () => {
 
 exports.getPort = () => { return port }
 exports.setPort = (serverPort) => { port = serverPort }
+
+exports.getHost = () => { return host }
+exports.setHost = (serverName) => { host = serverName }
 
 exports.setSwaggerApis = (apis) => swaggerOptions.apis = swaggerOptions.apis.concat(apis)
 

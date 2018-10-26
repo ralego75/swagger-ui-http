@@ -40,7 +40,8 @@
 
       // Build a system
       const ui = SwaggerUIBundle({
-        url: "http://localhost:5503/swagger.json",
+        url: "http://127.0.0.1:3000/swagger.json",
+        validatorUrl: false,
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
