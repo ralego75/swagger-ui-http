@@ -70,7 +70,7 @@ const getInfoMessage = (msg, option) => { return INFO_MSG + getMessage(msg, opti
 const printInfo = (msg, option, ...params) => console.log(getInfoMessage(msg, option), ...params)
 
 const initLogs = () => {
-  printInfo("Your server has started at port %d (" + HTTP_STRING, null, port, hostname, port)
+  printInfo("Your server has started at port %d (" + HTTP_STRING + ")", null, port, hostname, port);
   printInfo("API Docs definition: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlApiDocs)
   printInfo("Actuator Info API endpoint: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlActuatorInfo)
   printInfo("Actuator Helth API endpoint: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlActuatorHelth)
@@ -88,8 +88,8 @@ const distPath = "/dist/"
 const swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
-    version: '1.0.0',
-    description: 'Demonstrating how to describe STORES API with Swagger',
+    version: '1.0.6',
+    description: 'Demonstrating how to describe an API with Swagger',
   },
   host: host + ':' + port,
   basePath: '/'
