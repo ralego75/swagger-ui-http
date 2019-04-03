@@ -9,53 +9,13 @@ Swagger UI HTTP module.
 ## Installation
 npm install swagger-ui-http
 
-## Prerequisites
-If you are going to run your application on a different computer than your local one you will have to change the default IP defined for that purpose (IP: 127.0.0.1) in the index.html file belonging to our swagger-ui-http module.
-In the same way, if you want to run your application in a different port than the one normally used for nodejs (port 3000), you will have to modify it as well in the same file.
-```html
-  <body>
-    <div id="swagger-ui"></div>
-
-    <script src="./swagger-ui-bundle.js"> </script>
-    <script src="./swagger-ui-standalone-preset.js"> </script>
-    <script>
-    window.onload = function() {
-
-      // Build a system
-      const ui = SwaggerUIBundle({
-        url: "http://127.0.0.1:3000/swagger.json",
-        validatorUrl: false,
-        dom_id: '#swagger-ui',
-        deepLinking: true,
-        presets: [
-          SwaggerUIBundle.presets.apis,
-          SwaggerUIStandalonePreset
-        ],
-        plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
-        ],
-        layout: "StandaloneLayout"
-      })
-
-      window.ui = ui
-    }
-  </script>
-  </body>
-```
-
-```
-// New server address: servername.domain.com
-// New port: 5010
-url: "http://servername.domain.com:5010/swagger.json"
-```
-
 ## Usage
 When you require to usage  of the  swagger-ui-http module you must get the router first, indicating in the same moment the server name and the port number in which your application will be executed.
 The 'apis' parameter have to be defined with the file name list in which you have included endpoints within the router and you want them to be added equally in the Swagger UI display.
 Finally, within the parameter 'info' you could include all that predefined information, such as application configuration, version, url published and any other information relevant to your application, sensitive to be consulted at any time.
 ```javascript
 const host = 'servername.domain.com'
-const port = 5010
+const port = 3000
 const apis = ['./index.js']
 const info = {
     appName: 'Swagger-UI-HTTP-Example',

@@ -88,8 +88,8 @@ const distPath = "/dist/"
 const swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
-    version: '1.1.0',
-    description: 'Describing an API with Swagger',
+    version: '1.1.1',
+    description: 'API description with Swagger',
   },
   host: host + ':' + port,
   basePath: '/'
