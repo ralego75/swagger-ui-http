@@ -10,7 +10,7 @@ var host = undefined
 
 const urlApiDocs = "/api-docs"
 const urlActuatorInfo = "/actuator/info"
-const urlActuatorHelth = "/actuator/helth"
+const urlActuatorHealth = "/actuator/health"
 
 const INFO_MSG = "INFO"
 
@@ -73,7 +73,7 @@ const initLogs = () => {
   printInfo("Your server has started at port %d (" + HTTP_STRING + ")", null, port, hostname, port);
   printInfo("API Docs definition: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlApiDocs)
   printInfo("Actuator Info API endpoint: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlActuatorInfo)
-  printInfo("Actuator Helth API endpoint: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlActuatorHelth)
+  printInfo("Actuator Health API endpoint: " + HTTP_WITH_ENDPOINT_STRING, null, hostname, port, urlActuatorHealth)
 }
 
 const writeHead = (res, status, type) => {
@@ -88,8 +88,8 @@ const distPath = "/dist/"
 const swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
-    version: '1.0.6',
-    description: 'Demonstrating how to describe an API with Swagger',
+    version: '1.1.0',
+    description: 'Describing an API with Swagger',
   },
   host: host + ':' + port,
   basePath: '/'
@@ -150,4 +150,4 @@ exports.setSwaggerApis = (apis) => swaggerOptions.apis = swaggerOptions.apis.con
 
 exports.getUrlApiDocs = () => { return urlApiDocs }
 exports.getUrlActuatorInfo = () => { return urlActuatorInfo }
-exports.getUrlActuatorHelth = () => { return urlActuatorHelth }
+exports.getUrlActuatorHealth = () => { return urlActuatorHealth }

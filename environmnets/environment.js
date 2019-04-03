@@ -16,8 +16,8 @@ const HTTP = {
         }
     },
     BODY: {
-        OK: "Reference TopB2C process has finished sucessfully.",
-        ERROR: "Error executing Reference TopB2C process."
+        OK: "OK",
+        ERROR: "ERROR"
     },
     OPTIONS: {
         HEADERS: {
@@ -60,7 +60,7 @@ exports.getHTTP = () => { return HTTP }
 exports.setInfo = (info) => { BODY = info }
 exports.getInfo = () => { return { status: HTTP.STATUS.CODE.OK, body: BODY } }
 
-exports.getHelth = () => { return { status: HTTP.STATUS.CODE.OK, body: { "status": "UP" } } }
+exports.getHealth = () => { return { status: HTTP.STATUS.CODE.OK, body: { "status": "UP" } } }
 
 exports.getExecutionSucess = () => { return { status: HTTP.STATUS.CODE.OK, body: { "message": HTTP.BODY.OK } } }
 

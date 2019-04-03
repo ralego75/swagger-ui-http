@@ -49,7 +49,7 @@ exports.getRouter = (host, port, apis, info) => {
 
     /**
      * @swagger
-     * /actuator/helth:
+     * /actuator/health:
      *   get:
      *     tags:
      *       - ACTUATOR
@@ -61,7 +61,7 @@ exports.getRouter = (host, port, apis, info) => {
      *         description: "{ \"status\": \"UP\" }"
      */
 
-    router.addRoute(httpController.getUrlActuatorHelth(), (req, res, params) => httpController.sendJSONResponse(res, env.getHelth()))
+    router.addRoute(httpController.getUrlActuatorHealth(), (req, res, params) => httpController.sendJSONResponse(res, env.getHealth()))
 
     router.addRoute(urlSwaggerJson, (req, res, params) => httpController.sendResponse(res, env.getHTTP().STATUS.CODE.OK, JSON.stringify(swaggerSpec, null, ' '), env.getHTTP().OPTIONS.HEADERS.JSON))
 
